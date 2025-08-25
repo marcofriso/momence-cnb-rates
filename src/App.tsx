@@ -3,6 +3,7 @@
 import { useCnbRates } from "./api/useCnbRates";
 import "./App.css";
 import styled from "styled-components";
+import RatesList from "./components/RatesList";
 
 const Wrap = styled.div`
   max-width: 960px;
@@ -40,6 +41,7 @@ function App() {
         <Card role="alert">Failed to load rates. Please try again.</Card>
       )}
       {data && <Date>Date: {data.date}</Date>}
+      {data && <RatesList rows={data.rows} />}
     </Wrap>
   );
 }
