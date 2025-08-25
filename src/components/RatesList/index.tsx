@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import type { RateRow } from "../../types";
+import { formatNumber } from "../../lib/parseCnb";
 
 const Card = styled.section`
   background: color-mix(in oklab, canvas, canvastext 2%);
@@ -21,13 +22,6 @@ const Head = styled.div`
   font-weight: 700;
   opacity: 0.8;
 `;
-
-function formatNumber(n: number, locale = "cs-CZ", digits = 2): string {
-  return new Intl.NumberFormat(locale, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  }).format(n);
-}
 
 const RatesList = ({ rows }: { rows: RateRow[] }) => {
   return (

@@ -1,6 +1,6 @@
 import type { RatesPayload } from "../types";
 
-export function parseCnbDailyTxt(txt: string): RatesPayload {
+function parseCnbDailyTxt(txt: string): RatesPayload {
   const lines = txt.trim().split(/\r?\n/);
 
   const firstLine = lines[0] ?? "";
@@ -35,3 +35,12 @@ export function parseCnbDailyTxt(txt: string): RatesPayload {
 
   return { date, rows };
 }
+
+function formatNumber(n: number, locale = "cs-CZ", digits = 2): string {
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  }).format(n);
+}
+
+export { parseCnbDailyTxt, formatNumber };

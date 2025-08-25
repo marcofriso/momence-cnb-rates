@@ -4,6 +4,7 @@ import { useCnbRates } from "./api/useCnbRates";
 import "./App.css";
 import styled from "styled-components";
 import RatesList from "./components/RatesList";
+import ExchangeRate from "./components/ExchangeRate";
 
 const Wrap = styled.div`
   max-width: 960px;
@@ -36,11 +37,12 @@ function App() {
   return (
     <Wrap>
       <Title>Momence CNB Rates</Title>
-      {isLoading && <Card>Loading latest rates…</Card>}
+      <ExchangeRate rows={data?.rows} />
       {error && (
         <Card role="alert">Failed to load rates. Please try again.</Card>
       )}
-      {data && <Date>Date: {data.date}</Date>}
+      <Date>{data ? `Date: ${data?.date}` : <span>&nbsp;</span>}</Date>
+      {isLoading && <Card>Loading latest rates…</Card>}
       {data && <RatesList rows={data.rows} />}
     </Wrap>
   );
