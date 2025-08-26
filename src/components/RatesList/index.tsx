@@ -11,7 +11,7 @@ const Grid = styled.div`
   align-items: center;
 `;
 
-const Head = styled.div`
+const Head = styled.div.attrs({ role: "columnheader" })`
   font-weight: 700;
   opacity: 0.8;
 `;
@@ -36,11 +36,11 @@ const RatesList = ({ data }: { data: RatesPayload }) => {
         <Head>Rate (CZK)</Head>
         {rows.map((r) => (
           <React.Fragment key={r.code}>
-            <div>{r.country}</div>
-            <div>{r.currency}</div>
-            <div>{r.amount}</div>
-            <div>{r.code}</div>
-            <div>{formatNumber(r.rate, "cs-CZ", 4)}</div>
+            <div role="cell">{r.country}</div>
+            <div role="cell">{r.currency}</div>
+            <div role="cell">{r.amount}</div>
+            <div role="cell">{r.code}</div>
+            <div role="cell">{formatNumber(r.rate, "cs-CZ", 4)}</div>
           </React.Fragment>
         ))}
       </Grid>
