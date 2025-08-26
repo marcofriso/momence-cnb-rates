@@ -3,7 +3,7 @@ import { parseCnbDailyTxt } from "../lib/parseCnb";
 
 const CNB_URL = import.meta.env.DEV
   ? "/cnb/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt"
-  : "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt";
+  : `${import.meta.env.BASE_URL}data/daily.txt`;
 
 const DATA_REFRESH_MINUTES = 30;
 

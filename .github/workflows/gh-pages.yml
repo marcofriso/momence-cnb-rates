@@ -31,6 +31,12 @@ jobs:
           version: 9
           run_install: true
 
+      - name: Fetch CNB daily.txt
+        run: |
+          mkdir -p public/data
+          curl -fsSL "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt" \
+            -o public/data/daily.txt
+
       - name: Build
         run: pnpm run build
 
