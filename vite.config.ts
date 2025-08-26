@@ -4,6 +4,10 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // Set the base path for GitHub Pages (replace with repo name if different)
+  base: process.env.GITHUB_REPOSITORY
+    ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+    : "/",
   test: {
     environment: "jsdom",
     setupFiles: "./src/test/setup.ts",
