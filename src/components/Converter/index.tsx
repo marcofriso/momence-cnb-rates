@@ -11,9 +11,16 @@ const Input = styled.input`
 `;
 
 const Select = styled.select`
-  padding: 10px 12px;
+  padding: 10px 36px 10px 12px;
   border-radius: 10px;
   border: 1px solid #ccc;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+  width: 100%;
 `;
 
 const InputGroup = styled.div`
@@ -25,12 +32,12 @@ const InputGroup = styled.div`
   width: 350px;
 `;
 
-const ExchangeRate = ({ rows }: { rows: RateRow[] | undefined }) => {
+const Converter = ({ rows }: { rows: RateRow[] | undefined }) => {
   const [amount, setAmount] = useState("1");
   const [currency, setCurrency] = useState("EUR");
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(",", ".");
 
     if (value.includes("-") || (value !== "" && !/^\d*\.?\d*$/.test(value))) {
       setAmount("1");
@@ -74,7 +81,7 @@ const ExchangeRate = ({ rows }: { rows: RateRow[] | undefined }) => {
         {Number(amount) > 0 && selectedRow ? (
           <strong>
             {formatNumber(Number(amount), "cs-CZ", 2)} CZK ≈{" "}
-            {formatNumber(converted, "en-US", 2)} {selectedRow?.code}
+            {formatNumber(converted, "cs-CZ", 2)} {selectedRow?.code}
           </strong>
         ) : (
           <span>&nbsp;</span>
@@ -84,4 +91,4 @@ const ExchangeRate = ({ rows }: { rows: RateRow[] | undefined }) => {
   );
 };
 
-export default ExchangeRate;
+export default Converter;
