@@ -1,4 +1,4 @@
-import type { RatesPayload } from "../types";
+import type { RateRow, RatesPayload } from "../types";
 
 function parseCnbDailyTxt(txt: string): RatesPayload {
   const lines = txt.trim().split(/\r?\n/);
@@ -43,4 +43,8 @@ function formatNumber(n: number, locale = "cs-CZ", digits = 2): string {
   }).format(n);
 }
 
-export { parseCnbDailyTxt, formatNumber };
+function czkToForeign(czk: number, row: RateRow): number {
+  return (czk * row.amount) / row.rate;
+}
+
+export { parseCnbDailyTxt, formatNumber, czkToForeign };

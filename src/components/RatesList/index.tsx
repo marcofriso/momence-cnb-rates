@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import type { RateRow } from "../../types";
+import type { RatesPayload } from "../../types";
 import { formatNumber } from "../../lib/parseCnb";
-
-const Card = styled.section`
-  background: color-mix(in oklab, canvas, canvastext 2%);
-  border: 1px solid color-mix(in oklab, canvastext, transparent 85%);
-
-  padding: 20px;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
-`;
+import { Card } from "../../styled";
 
 const Grid = styled.div`
   display: grid;
@@ -23,10 +16,18 @@ const Head = styled.div`
   opacity: 0.8;
 `;
 
-const RatesList = ({ rows }: { rows: RateRow[] }) => {
+const Date = styled.p`
+  font-style: italic;
+  margin-bottom: 28px;
+`;
+
+const RatesList = ({ data }: { data: RatesPayload }) => {
+  const { rows, date } = data;
+
   return (
     <Card aria-label="rates-list">
       <h2>Daily exchange rates</h2>
+      <Date>{date}</Date>
       <Grid role="table">
         <Head>Country</Head>
         <Head>Currency</Head>
