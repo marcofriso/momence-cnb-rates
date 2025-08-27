@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { parseCnbDailyTxt } from "../lib/parseCnb";
 
+const CNB_DAILY_PATH =
+  "/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt";
+const CNB_DIRECT_URL = `https://www.cnb.cz${CNB_DAILY_PATH}`;
 const CNB_URL = import.meta.env.DEV
-  ? "/cnb/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt"
-  : `${import.meta.env.BASE_URL}data/daily.txt`;
+  ? `/cnb${CNB_DAILY_PATH}`
+  : `https://api.allorigins.win/raw?url=${encodeURIComponent(CNB_DIRECT_URL)}`;
 
 const DATA_REFRESH_MINUTES = 30;
 
