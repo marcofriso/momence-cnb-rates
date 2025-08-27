@@ -11,7 +11,7 @@ const CNB_URL = import.meta.env.DEV
 const DATA_REFRESH_MINUTES = 30;
 
 async function fetchCnbDaily(): Promise<ReturnType<typeof parseCnbDailyTxt>> {
-  const res = await fetch(CNB_URL, { cache: "no-store" });
+  const res = await fetch(CNB_URL);
 
   if (!res.ok) throw new Error(`CNB fetch failed: ${res.status}`);
 
